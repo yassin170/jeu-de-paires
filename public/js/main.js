@@ -10,9 +10,9 @@ document.addEventListener("DOMContentLoaded", ()=>{
     let pairsArray = arrayImages.concat(arrayImages);
 
     // Melange les pairs
-    pairsArray = shuffleArray(pairsArray);
+    pairsArray = melange(pairsArray);
 
-    let flippedCards = [];
+    let cardReturn = [];
 
     allCards.forEach(function (card, index) {
         card.addEventListener("click", () => {
@@ -22,34 +22,33 @@ document.addEventListener("DOMContentLoaded", ()=>{
                 let randomImage = pairsArray[index];
                 card.querySelector(".flip-card-back").style.backgroundImage = `url(${randomImage})`;
                 card.querySelector(".flip-card-inner").classList.toggle("flipped");
-                flippedCards.push(card);
-                if (flippedCards.length === 2) {
+                cardReturn.push(card);
+                if (cardReturn.length === 2) {
                     // verifie si les 2 cartes sont les memes
-                    checkMatches();
+                    sameCard();
                 }
             }
         });
     });
 
-    function checkMatches() {
-        if (flippedCards[0].querySelector(".flip-card-back").style.backgroundImage === flippedCards[1].querySelector(".flip-card-back").style.backgroundImage) {
+    function sameCard() {
+        if (cardReturn[0].querySelector(".flip-card-back").style.backgroundImage === cardReturn[1].querySelector(".flip-card-back").style.backgroundImage) {
             // si cest les memes cartes add class same
-            flippedCards.forEach((card) => card.querySelector(".flip-card-inner").classList.add("same"));
+            cardReturn.forEach((card) => card.querySelector(".flip-card-inner").classList.add("same"));
         } else {
             // si cest pas la meme elle se remove
-            flippedCards.forEach((card) => {
+            cardReturn.forEach((card) => {
                 card.querySelector(".flip-card-inner").classList.remove("flipped");
                 card.querySelector(".flip-card-back").style.backgroundImage = '';
             });
         }
-
         // Reinitialise le tableau des cartes retourner
-        flippedCards = [];
+        cardReturn = [];
     }
 
-    function shuffleArray(array) {
+    function melange(array) {
         for (let i = array.length - 1; i > 0; i--) {
-            const j = Math.floor(Math.random() * (i + 1));
+            let j = Math.floor(Math.random() * (i + 1));
             [array[i], array[j]] = [array[j], array[i]];
         }
         return array;
