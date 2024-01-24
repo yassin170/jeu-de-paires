@@ -41,7 +41,6 @@ body {
 
 
 .flip-card { /* size container card */
-    /* background-color: transparent; */
     width: 100px;
     height: 150px;
     perspective: 1000px; /* 3D effect */
@@ -80,11 +79,9 @@ body {
 
 /* Style the back side */
 .flip-card-back {
-    background-image: url(../src/img/carteBatman.png);
     background-position: center;
     background-repeat: no-repeat;
-    background-size: contain;
-    background-color: white;
+    background-size: cover;
     transform: rotateY(180deg);
     border-radius: 5px;
 }
