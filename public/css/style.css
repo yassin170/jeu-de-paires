@@ -12,6 +12,12 @@ body {
     background-size: cover;
 }
 
+#win {
+    height: 800px;
+    width: 400px;
+    background-color: #4d7a1e;
+}
+
 #table {
     width: 1000px;
     height: 550px;
